@@ -31,6 +31,15 @@ const actions = {
     commit('SET_TASKS', tasks);
     commit('SET_LOADING', false);
   },
+
+  async completeTask({ commit, state }, task) {
+    console.log(task);
+
+  },
+
+  async uncompleteTask({ commit, state }, task) {
+
+  },
 };
 
 export default new Vuex.Store({ state, getters, mutations, actions });

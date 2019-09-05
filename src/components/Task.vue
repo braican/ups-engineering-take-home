@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
   name: 'Task',
   props: {
@@ -24,10 +25,15 @@ export default {
       const newCompletedStatus = !this.completed;
 
       this.completed = newCompletedStatus;
-      console.log(newCompletedStatus);
 
-
+      if (newCompletedStatus) {
+        this.completeTask(this.task.id);
+      } else {
+        this.uncompleteTask(this.task.id);
+      }
     },
+
+    ...mapActions(['completeTask', 'uncompleteTask']),
   },
 };
 </script>
