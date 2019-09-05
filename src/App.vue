@@ -15,7 +15,7 @@
         <p>Loading</p>
       </div>
 
-      <div v-else>
+      <div v-else class="tasklists">
         <div class="tasklist tasklist-todo">
           <TaskList headline="Todo" />
         </div>
@@ -61,5 +61,15 @@ export default {
 
 .trello-link {
   margin-top: 0.5em;
+}
+
+.tasklists {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tasklist {
+  flex: 1;
+  max-width: 48%;
 }
 </style>

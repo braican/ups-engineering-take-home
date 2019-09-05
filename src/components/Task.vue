@@ -36,7 +36,9 @@ export default {
 $toggler-size: 20px;
 
 .task {
-  margin-bottom: .5em;
+  margin-bottom: 1em;
+  padding-left: #{$toggler-size * 2};
+  position: relative;
 }
 
 .completed {
@@ -45,7 +47,10 @@ $toggler-size: 20px;
 }
 
 .status-toggler {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: #{$toggler-size / -2};
   width: $toggler-size;
   height: $toggler-size;
   border: 2px solid #ccc;
