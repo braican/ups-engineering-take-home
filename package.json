@@ -12,14 +12,15 @@
     "vue": "^2.6.10"
   },
   "devDependencies": {
+    "@upstatement/eslint-config": "^0.4.2",
+    "@upstatement/prettier-config": "^0.3.0",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-service": "^3.11.0",
-    "@upstatement/eslint-config": "^0.4.2",
-    "@upstatement/prettier-config": "^0.3.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
+    "eslint-config-prettier": "^6.2.0",
+    "eslint-plugin-vue": "^5.2.3",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
