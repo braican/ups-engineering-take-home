@@ -10,6 +10,11 @@ const state = {
   tasks: [],
 };
 
+const getters = {
+  completedTasks: state => state.tasks.filter(task => task.completed),
+  incompleteTasks: state => state.tasks.filter(task => !task.completed),
+};
+
 const mutations = {
   'SET_LOADING': (state, loading) => {
     state.loading = loading;
@@ -28,4 +33,4 @@ const actions = {
   },
 };
 
-export default new Vuex.Store({ state, mutations, actions });
+export default new Vuex.Store({ state, getters, mutations, actions });

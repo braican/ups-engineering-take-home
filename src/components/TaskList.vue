@@ -1,7 +1,7 @@
 <template>
   <section>
     <h3 class="list-header">
-      Todo
+      {{ headline }}
     </h3>
     <ul v-if="tasks">
       <li v-for="task in tasks" :key="task.id">
@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import Task from '@/components/Task';
 
 export default {
@@ -20,8 +19,20 @@ export default {
   components: {
     Task,
   },
+  props: {
+    headline: {
+      type: String,
+      default: '',
+    },
+    completed: {
+      type: Boolean,
+      default: false,
+    },
+  },
   computed: {
-    ...mapState(['tasks']),
+    tasks() {
+      return this.completed ? this.$store.getters.completedTasks : this.$store.getters.incompleteTasks;
+    },
   },
 };
 </script>

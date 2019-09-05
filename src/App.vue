@@ -15,7 +15,14 @@
         <p>Loading</p>
       </div>
 
-      <TaskList v-else />
+      <div v-else>
+        <div class="tasklist tasklist-todo">
+          <TaskList headline="Todo" />
+        </div>
+        <div class="tasklist tasklist-completed">
+          <TaskList headline="For Review" completed />
+        </div>
+      </div>
     </main>
   </div>
 </template>
