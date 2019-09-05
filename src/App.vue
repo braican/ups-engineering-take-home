@@ -21,6 +21,12 @@ export default {
       info: null,
     };
   },
+  async mounted() {
+    const cards = await trello.getTasks();
+
+    console.log(cards);
+
+  },
 };
 </script>
 
