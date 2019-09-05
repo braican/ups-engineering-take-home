@@ -4,42 +4,66 @@
       <h1 class="headline">
         UpDos
       </h1>
+
+      <p class="trello-link">
+        <a href="https://trello.com/b/W7hrJAdI/ups-engineering-take-home-project" target="_blank">Go to Trello board →</a>
+      </p>
     </header>
 
-    <section>
-      <h3>Todo</h3>
-      <ul v-if="tasks">
-        <li v-for="task in tasks" :key="task.id">
-          {{ task.name }}
-        </li>
-      </ul>
-    </section>
+    <main class="app-main">
+      <div v-if="loading">
+        <p>Loading</p>
+      </div>
+
+      <TaskList v-else>
+        <section>
+          <h3 class="list-header">
+            Todo
+          </h3>
+          <ul v-if="tasks">
+            <li v-for="task in tasks" :key="task.id">
+              {{ task.name }}
+            </li>
+          </ul>
+        </section>
+      </TaskList>
+    </main>
   </div>
 </template>
 
 <script>
 // Import the global css.
 import '@/styles/globals.scss';
-
-import trello from '@/services/Trello';
+import { mapState, mapActions } from 'vuex';
+import TaskList from '@/components/TaskList';
 
 export default {
   name: 'App',
-  data() {
-    return {
-      tasks: null,
-    };
+  components: {
+    TaskList,
   },
-  async mounted() {
-    const tasks = await trello.getClientTasks();
-
-    this.tasks = tasks;
+  computed: {
+    ...mapState(['loading', 'tasks']),
+  },
+  mounted() {
+    this.getTasks();
+  },
+  methods: {
+    ...mapActions(['getTasks']),
   },
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 #app {
   padding: 2vw;
+}
+
+.app-main {
+  margin-top: 2rem;
+}
+
+.trello-link {
+  margin-top: 0.5em;
 }
 </style>
