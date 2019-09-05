@@ -1,5 +1,5 @@
 <template>
-  <div class="task" :class="{'completed': task.completed}">
+  <div class="task" :class="{'completed': completed}">
     <button class="status-toggler" @click="toggleStatus" />
     <span>{{ task.name }}</span>
   </div>
@@ -14,9 +14,18 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      completed: this.task.completed,
+    };
+  },
   methods: {
     toggleStatus() {
-      console.log('test');
+      const newCompletedStatus = !this.completed;
+
+      this.completed = newCompletedStatus;
+      console.log(newCompletedStatus);
+
 
     },
   },
@@ -32,6 +41,7 @@ $toggler-size: 20px;
 
 .completed {
   text-decoration: line-through;
+  opacity: .4;
 }
 
 .status-toggler {

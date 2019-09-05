@@ -29,10 +29,7 @@ class TrelloService {
       fields: 'name',
     });
 
-    const [labels, lists] = await Promise.all([labelRequest, listsRequest]).catch(e => {
-      console.error(`Error: ${e}`);
-    });
-
+    const [labels, lists] = await Promise.all([labelRequest, listsRequest]).catch(e => console.error(`Error: ${e}`));
     const cards = [];
     const clientLabels = labels.filter(label => label.name === 'CLIENT').map(label => label.id);
 
