@@ -15,18 +15,7 @@
         <p>Loading</p>
       </div>
 
-      <TaskList v-else>
-        <section>
-          <h3 class="list-header">
-            Todo
-          </h3>
-          <ul v-if="tasks">
-            <li v-for="task in tasks" :key="task.id">
-              {{ task.name }}
-            </li>
-          </ul>
-        </section>
-      </TaskList>
+      <TaskList v-else />
     </main>
   </div>
 </template>
@@ -43,7 +32,7 @@ export default {
     TaskList,
   },
   computed: {
-    ...mapState(['loading', 'tasks']),
+    ...mapState(['loading']),
   },
   mounted() {
     this.getTasks();
