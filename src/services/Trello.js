@@ -33,12 +33,20 @@ class TrelloService {
       console.error(`Error: ${e}`);
     });
 
-    const incompleteListCards = lists.filter(list => list.name !== 'For Review' && list.name !== 'Accepted').map(list => list.cards);
-    const incompleteCards = [].concat(...incompleteListCards);
+    const cards = [];
     const clientLabels = labels.filter(label => label.name === 'CLIENT').map(label => label.id);
-    const clientCards = incompleteCards.filter(card => card.idLabels.some(l => clientLabels.includes(l)));
 
-    return clientCards;
+    lists.forEach(list => {
+      const listCards = list.cards;
+      const completeLists = ['For Review', 'Accepted'];
+      const newCards = listCards
+        .filter(card => card.idLabels.some(l => clientLabels.includes(l)))
+        .map(card => ({ ...card, completed: completeLists.includes(list.name) }));
+
+      cards.push(...newCards);
+    });
+
+    return cards;
   }
 }
 
