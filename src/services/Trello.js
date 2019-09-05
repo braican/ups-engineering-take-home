@@ -20,21 +20,25 @@ class TrelloService {
     }
   }
 
-  async getTasks() {
-    const cardsRequest = this.get('/lists', {
+  async getClientTasks() {
+    const labelRequest = this.get('/labels');
+    const listsRequest = this.get('/lists', {
       cards: 'open',
       card_fields: 'name,desc,idLabels',
       filter: 'open',
       fields: 'name',
     });
 
-
-
-    const [cards] = await Promise.all([cardsRequest]).catch(e => {
+    const [labels, lists] = await Promise.all([labelRequest, listsRequest]).catch(e => {
       console.error(`Error: ${e}`);
     });
 
-    return cards;
+    const incompleteListCards = lists.filter(list => list.name !== 'For Review' && list.name !== 'Accepted').map(list => list.cards);
+    const incompleteCards = [].concat(...incompleteListCards);
+    const clientLabels = labels.filter(label => label.name === 'CLIENT').map(label => label.id);
+    const clientCards = incompleteCards.filter(card => card.idLabels.some(l => clientLabels.includes(l)));
+
+    return clientCards;
   }
 }
 

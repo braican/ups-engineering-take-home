@@ -5,6 +5,15 @@
         UpDos
       </h1>
     </header>
+
+    <section>
+      <h3>Todo</h3>
+      <ul v-if="tasks">
+        <li v-for="task in tasks" :key="task.id">
+          {{ task.name }}
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
 
@@ -18,14 +27,13 @@ export default {
   name: 'App',
   data() {
     return {
-      info: null,
+      tasks: null,
     };
   },
   async mounted() {
-    const cards = await trello.getTasks();
+    const tasks = await trello.getClientTasks();
 
-    console.log(cards);
-
+    this.tasks = tasks;
   },
 };
 </script>
