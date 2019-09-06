@@ -5,7 +5,7 @@
       {{ task.name }}
     </p>
     <p v-if="!completed" class="task__list">
-      {{ task.listname }}
+      {{ 'For Review' === task.listname ? 'Sprint Backlog' : task.listname }}
     </p>
   </div>
 </template>
@@ -32,9 +32,9 @@ export default {
       this.completed = newCompletedStatus;
 
       if (newCompletedStatus) {
-        this.completeTask(this.task.id);
+        this.completeTask(this.task);
       } else {
-        this.uncompleteTask(this.task.id);
+        this.uncompleteTask(this.task);
       }
     },
 

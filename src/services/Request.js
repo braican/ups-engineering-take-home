@@ -47,6 +47,8 @@ class Request {
 
   /**
    * Perform a PUT request on the API.
+   *
+   * @return json data from the endpoint, or an error if there was a problem.
    */
   async put() {
     if ('' === this.requestUrl) {

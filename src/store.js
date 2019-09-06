@@ -55,11 +55,13 @@ const actions = {
   },
 
   async completeTask({ commit }, task) {
-    commit('COMPLETE_TASK', task);
+    commit('COMPLETE_TASK', task.id);
+    trello.completeTask(task);
   },
 
   async uncompleteTask({ commit }, task) {
-    commit('UNCOMPLETE_TASK', task);
+    commit('UNCOMPLETE_TASK', task.id);
+    trello.uncompleteTask(task);
   },
 };
 
