@@ -6,6 +6,7 @@ $c--black: #2c3e50;
 // Type
 // -----------
 
+$fs--sm: 0.8rem;
 $fs--base: 20px;
 $fs--lg: 2rem;
 
@@ -15,3 +16,8 @@ $fw--base: 400;
 $fw--bold: 700;
 
 $lh--base: 1.5;
+
+// Breakpoints
+// -----------
+
+$bp--mobile: 920px;
