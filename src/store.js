@@ -22,6 +22,28 @@ const mutations = {
   'SET_TASKS': (state, tasks) => {
     state.tasks = tasks;
   },
+  'COMPLETE_TASK': (state, taskId) => {
+    const updatedTasks = state.tasks.map(task => {
+      if (task.id === taskId) {
+        return { ...task, completed: true };
+      }
+
+      return task;
+    });
+
+    state.tasks = updatedTasks;
+  },
+  'UNCOMPLETE_TASK': (state, taskId) => {
+    const updatedTasks = state.tasks.map(task => {
+      if (task.id === taskId) {
+        return { ...task, completed: false };
+      }
+
+      return task;
+    });
+
+    state.tasks = updatedTasks;
+  },
 };
 
 const actions = {
@@ -32,13 +54,12 @@ const actions = {
     commit('SET_LOADING', false);
   },
 
-  async completeTask({ commit, state }, task) {
-    console.log(task);
-
+  async completeTask({ commit }, task) {
+    commit('COMPLETE_TASK', task);
   },
 
-  async uncompleteTask({ commit, state }, task) {
-
+  async uncompleteTask({ commit }, task) {
+    commit('UNCOMPLETE_TASK', task);
   },
 };
 
