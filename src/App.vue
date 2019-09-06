@@ -51,8 +51,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import './styles/abstracts';
+
 #app {
-  padding: 2vw;
+  padding: 4vw;
 }
 
 .app-main {
@@ -64,12 +66,19 @@ export default {
 }
 
 .tasklists {
-  display: flex;
-  justify-content: space-between;
+  @include mq($bp--mobile) {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .tasklist {
-  flex: 1;
-  max-width: 48%;
+  margin-top: 4rem;
+
+  @include mq($bp--mobile) {
+    flex: 1;
+    max-width: 48%;
+    margin-top: 0;
+  }
 }
 </style>
