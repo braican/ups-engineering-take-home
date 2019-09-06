@@ -5,10 +5,16 @@ const TOKEN = process.env.VUE_APP_TRELLO_OAUTH_TOKEN;
 const BOARD_ID = process.env.VUE_APP_TRELLO_BOARD_ID;
 
 class TrelloService {
-  async get(endpoint, params = {}) {
-    params.key = API_KEY;
-    params.token = TOKEN;
-    const query = Object.keys(params).map(key => `${key}=${params[key]}`).join('&');
+
+  _addAuthArgs(args = {}) {
+    args.key = API_KEY;
+    args.token = TOKEN;
+    return args;
+  }
+
+  async get(endpoint, args = {}) {
+    args = this._addAuthArgs(args);
+    const query = Object.keys(args).map(key => `${key}=${args[key]}`).join('&');
     const route = `${BASE_ROUTE}${BOARD_ID}${endpoint}?${query}`;
 
     try {
@@ -18,6 +24,10 @@ class TrelloService {
       console.error('Error in TrelloServices.get', error);
       throw error;
     }
+  }
+
+  async put(endpoint, args = {}) {
+    args = this._addAuthArgs(args);
   }
 
   async getClientTasks() {
@@ -38,7 +48,7 @@ class TrelloService {
       const completeLists = ['For Review', 'Accepted'];
       const newCards = listCards
         .filter(card => card.idLabels.some(l => clientLabels.includes(l)))
-        .map(card => ({ ...card, completed: completeLists.includes(list.name) }));
+        .map(card => ({ ...card, completed: completeLists.includes(list.name), listname: list.name }));
 
       cards.push(...newCards);
     });

@@ -1,7 +1,12 @@
 <template>
   <div class="task" :class="{'completed': completed}">
     <button class="status-toggler" @click="toggleStatus" />
-    <span>{{ task.name }}</span>
+    <p class="task__name">
+      {{ task.name }}
+    </p>
+    <p v-if="!completed" class="task__list">
+      {{ task.listname }}
+    </p>
   </div>
 </template>
 
@@ -39,6 +44,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../styles/abstracts';
+
 $toggler-size: 20px;
 
 .task {
@@ -48,8 +55,17 @@ $toggler-size: 20px;
 }
 
 .completed {
-  text-decoration: line-through;
   opacity: .4;
+
+  .task__name {
+    text-decoration: line-through;
+  }
+}
+
+.task__list {
+  font-size: $fs--sm;
+  font-weight: $fw--bold;
+  margin-top: 0.25em;
 }
 
 .status-toggler {
