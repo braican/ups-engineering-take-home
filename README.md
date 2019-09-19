@@ -1,29 +1,37 @@
-# Upstatement Engineering Take-home
+# Upstatement Engineering Take-home: UpDos
 
-## Project setup
-```
-yarn install
-```
+Sets up a simpler way for clients to see their tasks and mark them as complete. Pulls cards labelled with the `CLIENT` label from [this public Trello board](https://trello.com/b/W7hrJAdI/ups-engineering-take-home-project).
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+Marking a todo as complete in the application will move the card to the `For Review` column on the Trello board. Unmarking a completed task in the application will move the related card to the `Sprint Backlog` column on the Trello board.
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+## Installation
 
-### Run your tests
-```
-yarn run test
-```
+1. Copy the `.env.sample` file to `.env.local` and update the following variables:
 
-### Lints and fixes files
-```
-yarn run lint
-```
+    * Add your Trello API key to `VUE_APP_TRELLO_KEY`.
+    * Your OAuth token should go in `VUE_APP_TRELLO_OAUTH_TOKEN`.
+    * The ID for the Trello board that holds the client's cards goes in `VUE_APP_TRELLO_BOARD_ID`.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+1. Make sure we're using the right version of node:
+    ```
+    nvm install
+    ```
+
+2. Install front-end dependencies:
+    ```
+    yarn install
+    ```
+
+All set. You're all set to start the project.
+
+## Development
+
+1. Make sure we're using the right version of node:
+    ```
+    nvm install
+    ```
+
+2. Start the application:
+    ```
+    yarn start
+    ```
